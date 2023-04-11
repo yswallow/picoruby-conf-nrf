@@ -1,0 +1,4 @@
+[submodule "lib/picoruby"]
+	path = lib/picoruby
+	url = https://github.com/yswallow/picoruby.git
+	branch = nrf
