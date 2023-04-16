@@ -2,3 +2,6 @@
 	path = lib/picoruby
 	url = https://github.com/yswallow/picoruby.git
 	branch = nrf
+[submodule "lib/tinyusb"]
+	path = lib/tinyusb
+	url = https://github.com/hathach/tinyusb.git

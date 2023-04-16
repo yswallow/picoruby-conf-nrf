@@ -11,6 +11,10 @@ file "lib/picoruby" do
   #sh "git submodule update --init --recursive"
 end
 
+file "lib/tinyusb/examples/device/cdc_msc" do
+  sh "make BOARD=feather_nrf52840_express get-deps"
+end
+
 task :libmruby_no_msc => "lib/picoruby" do
   FileUtils.cd "lib/picoruby" do
     #sh "rake test"
@@ -31,7 +35,7 @@ end
 
 desc "build without cmake preparation"
 task :build do
-  sh "cmake --build build"
+  sh "cmake --build build -v"
 end
 
 desc "build PRK Firmware inclusive of keymap.rb (without mass storage)"

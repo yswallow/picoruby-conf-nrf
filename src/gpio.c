@@ -13,7 +13,12 @@
 static void
 c_gpio_get(mrb_vm *vm, mrb_value *v, int argc)
 {
+  bool val = nrf_gpio_pin_read(GET_INT_ARG(1));
+  if( val ) {
     SET_TRUE_RETURN();
+  } else {
+    SET_FALSE_RETURN();
+  }
 }
 
 static void

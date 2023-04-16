@@ -2,10 +2,8 @@
 #include <stdlib.h>
 
 /* hardware */
-#include <nrf_delay.h>
 #include <nrf.h>
 #include <nrf_nvic.h>
-
 #include "../lib/picoruby/mrbgems/picoruby-io-console/src/hal/hal.h"
 
 /* mruby/c */
@@ -16,10 +14,9 @@
 #endif
 
 #ifndef MRBC_NO_TIMER
-#error "TIMER version is not implemented"
 #include <nrfx_timer.h>
 
-const nrfx_timer_t TIMER_MRB = NRFX_TIMER_INSTANCE(0);
+const nrfx_timer_t TIMER_MRB = NRFX_TIMER_INSTANCE(3);
 
 void
 alarm_irq(nrf_timer_event_t event_type, void* p_context)
@@ -45,13 +42,13 @@ hal_init(void)
 void
 hal_enable_irq()
 {
-  sd_nvic_EnableIRQ(TIMER0_IRQn);
+  sd_nvic_EnableIRQ(TIMER3_IRQn);
 }
 
 void
 hal_disable_irq()
 {
-  sd_nvic_DisableIRQ(TIMER0_IRQn);
+  sd_nvic_DisableIRQ(TIMER3_IRQn);
 }
 
 void
@@ -61,7 +58,7 @@ hal_idle_cpu()
 }
 
 #else // MRBC_NO_TIMER
-
+#warning "If you use MRBC_NO_TIMER, sleep_ms is not working correctly."
 void
 hal_idle_cpu()
 {
